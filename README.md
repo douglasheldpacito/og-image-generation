@@ -1,87 +1,94 @@
-# Welcome to React Router!
+# Open Graph Image Generator
 
-A modern, production-ready template for building full-stack React applications using React Router.
+![Open Graph Protocol Logo](https://ogp.me/logo.png)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+A project to generate dynamic images for the Open Graph (OG) protocol in web applications.
 
-## Features
+## 📌 About Open Graph
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+We’ve all copied an interesting link and shared it on social media like WhatsApp, Facebook, X, LinkedIn, etc. Have you noticed that when you paste the link, even before sending it, an image with information about the content appears? This is controlled by Open Graph meta tags on the source website.
 
-## Getting Started
+> _"Open Graph is a protocol that enables customization of how content appears when a web page is shared on social media. It uses HTML meta tags to provide specific information about the page, such as title, description, and image, controlling how the shared link is displayed."_
 
-### Installation
+Learn more: [https://ogp.me/](https://ogp.me/)
 
-Install the dependencies:
+## 🚀 Introduction
 
-```bash
-npm install
+This project demonstrates how to generate dynamic Open Graph images in a React application with React Router v7. The solution uses:
+
+- **Satori**: Converts HTML and CSS into SVG
+- **ResVG**: Converts SVG into PNG
+- **fast-average-color-node**: Extracts dominant colors from images
+
+## 🛠️ Technologies
+
+- React Router v7
+- TypeScript
+- Satori
+- @resvg/resvg-js
+- fast-average-color-node
+
+## ⚙️ How It Works
+
+1. Creates a special route (`/og`) that generates dynamic images
+2. Uses dynamic data (title, description, image) to create a customized design
+3. Converts the design into PNG to be served as the `og:image` meta tag
+4. Applies dynamic colors based on the main image for a cohesive design
+
+## 🧑‍💻 How to Use
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+## ✨ Features
+
+- Real-time dynamic image generation
+- Responsive design for sharing
+- Adaptive colors based on the main image
+- Support for custom fonts (Inter in this example)
+- Easy integration with any framework
+
+## 📄 Example Meta Tags
+
+```javascript
+export function meta() {
+  return [
+    { title: "Open Graph Image Generation App" },
+    { name: "description", content: "Welcome to Open Graph Image Generation!" },
+    { name: "og:title", content: "Open Graph Image Generation App" },
+    {
+      name: "og:description",
+      content: "Welcome to Open Graph Image Generation!",
+    },
+    { name: "og:image", content: "http://localhost:5173/og/" },
+    { name: "og:url", content: "http://localhost:5173/" },
+    { name: "og:type", content: "website" },
+    { name: "og:site_name", content: "Open Graph Image Generation" },
+    { name: "og:locale", content: "en_US" },
+  ];
+}
 ```
 
-### Development
+### Extra Tip
 
-Start the development server with HMR:
+You can test how your OG images will appear on social media using tools like:
 
-```bash
-npm run dev
-```
+- [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
+- [Twitter Card Validator](https://cards-dev.twitter.com/validator)
 
-Your application will be available at `http://localhost:5173`.
+## 📝 License
 
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+MIT
 
 ---
 
-Built with ❤️ using React Router.
+Built by Douglas Held Pacito - 2025
+
+---
